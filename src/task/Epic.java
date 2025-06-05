@@ -1,19 +1,25 @@
 package task;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 public class Epic extends Task {
     private final Map<Integer, Subtask> subtasks = new HashMap<>();
+
     public Epic(String name, String description) {
         super(name, description);
     }
+
+
     public Map<Integer, Subtask> getSubtasks() {
         return subtasks;
     }
+
     public void addSubtask(Subtask subtask) {
+        if (subtask == null || subtask.getEpic() == this) {
+            throw new IllegalArgumentException("Подзадача не может быть своим же эпиком");
+        }
         subtasks.put(subtask.getId(), subtask);
         subtask.setEpic(this);
     }
+
     @Override
     public void setStatus() {
         boolean allNew = false;
@@ -48,11 +54,13 @@ public class Epic extends Task {
             }
         }
     }
+
     private void fromNewToDone() {
         if (getStatus() == Status.NEW) {
             super.setStatus();
         }
     }
+
     private String subtasksIds() {
         String s = "{ ";
         for(Subtask subtask : subtasks.values()) {
@@ -61,6 +69,7 @@ public class Epic extends Task {
         s = s + "}";
         return s;
     }
+
     @Override
     public String toString() {
         return  "Epic{" +

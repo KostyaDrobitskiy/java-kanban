@@ -1,39 +1,47 @@
 package task;
-import manager.IdManager;
 import java.util.Objects;
-
 public class Task {
     private Integer id;
     private String name;
     private String description;
     private Status status;
+
+    //IdManager idManager = new IdManager();
+
     public Task(String name, String description) {
-        id = IdManager.addId();
         this.name = name;
         this.description = description;
         status = Status.NEW;
     }
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public Status getStatus() {
         return status;
     }
+
     public void setStatus() {
         if (status == Status.NEW) {
             status = Status.IN_PROGRESS;
@@ -41,6 +49,8 @@ public class Task {
             status = Status.DONE;
         }
     }
+
+
     @Override
     public boolean equals(Object o) {
         if (o == this) return true;
@@ -48,10 +58,12 @@ public class Task {
         Task task = (Task) o;
         return Objects.equals(task.id, id);
     }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -62,3 +74,4 @@ public class Task {
                 '}';
     }
 }
+
