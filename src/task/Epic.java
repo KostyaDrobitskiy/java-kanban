@@ -1,75 +1,22 @@
 package task;
 import java.util.*;
 public class Epic extends Task {
-    private final Map<Integer, Subtask> subtasks = new HashMap<>();
+    private final List<Integer> subtasks = new ArrayList<>();
 
     public Epic(String name, String description) {
         super(name, description);
     }
 
-
-    public Map<Integer, Subtask> getSubtasks() {
+    public List<Integer> getSubtasks() {
         return subtasks;
     }
 
-    public void addSubtask(Subtask subtask) {
-        if (subtask == null || subtask.getEpic() == this) {
-            throw new IllegalArgumentException("Подзадача не может быть своим же эпиком");
-        }
-        subtasks.put(subtask.getId(), subtask);
-        subtask.setEpic(this);
+    public void addSubtask(int id) {
+        subtasks.add(id);
     }
-
-    @Override
-    public void setStatus() {
-        boolean allNew = false;
-        boolean allInProgress = false;
-        boolean allDone = false;
-        if (subtasks.isEmpty()){
-            return;
-        }
-        for (Subtask subtask : subtasks.values()) {
-            if (subtask.getStatus() == Status.NEW) {
-                allNew = true;
-                continue;
-            }
-            if (subtask.getStatus() == Status.IN_PROGRESS) {
-                allInProgress = true;
-                continue;
-            }
-            if (subtask.getStatus() == Status.DONE) {
-                allDone = true;
-            }
-        }
-        if (allNew) {
-            if (allInProgress || allDone) {
-                fromNewToDone();
-            }
-        } else if (allInProgress) {
-            fromNewToDone();
-        } else {
-            fromNewToDone();
-            if (getStatus() == Status.IN_PROGRESS) {
-                super.setStatus();
-            }
-        }
+    public void removeSubtaskId(int id) {
+        subtasks.remove((Integer) id);
     }
-
-    private void fromNewToDone() {
-        if (getStatus() == Status.NEW) {
-            super.setStatus();
-        }
-    }
-
-    private String subtasksIds() {
-        String s = "{ ";
-        for(Subtask subtask : subtasks.values()) {
-            s = s + subtask.getId() + " ";
-        }
-        s = s + "}";
-        return s;
-    }
-
     @Override
     public String toString() {
         return  "Epic{" +
@@ -77,7 +24,7 @@ public class Epic extends Task {
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", status=" + getStatus() +
-                ", subtasks=" + subtasksIds() +
+                ", subtasks=" + subtasks +
                 '}';
     }
 }

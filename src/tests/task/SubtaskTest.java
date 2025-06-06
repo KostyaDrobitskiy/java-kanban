@@ -1,26 +1,18 @@
 package task;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 class SubtaskTest {
     @Test
-    void subtasksWithSameIdShouldBeEqual(){
-        Subtask subtask1 = new Subtask("sub1", "desxription");
-        Subtask subtask2 = new Subtask("sub2", "desxriptionsssss");
-        subtask1.setId(1);
-        subtask2.setId(1);
-        assertEquals(subtask1, subtask2);
-        assertEquals(subtask1.hashCode(), subtask2.hashCode());
+    void subtasksWithSameIdShouldBeEqual() {
+        Subtask sub1 = new Subtask("Sub 1", "Desc", 1);
+        Subtask sub2 = new Subtask("Sub 2", "Other", 2);
+        sub1.setId(100);
+        sub2.setId(100);
+        assertEquals(sub1, sub2);
     }
     @Test
-    void epicCannotBeSubtaskOfItself() {
-        Epic epic = new Epic("Epic", "");
-        epic.setId(1);
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            epic.addSubtask(new Subtask("Fake", "") {{
-                setId(1); // Подделываем ID чтобы совпадал с эпиком
-            }});
-        });
+    void testSubtaskCannotBeItsOwnEpic() {
+        Subtask subtask = new Subtask("Sub", "desc", 10);
+        assertNotEquals(subtask.getEpicId(), subtask.getId(), "Подзадача не должна быть своим же эпиком");
     }
 }

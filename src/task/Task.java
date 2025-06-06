@@ -1,12 +1,13 @@
 package task;
+
 import java.util.Objects;
+
 public class Task {
     private Integer id;
     private String name;
     private String description;
     private Status status;
 
-    //IdManager idManager = new IdManager();
 
     public Task(String name, String description) {
         this.name = name;
@@ -42,14 +43,9 @@ public class Task {
         return status;
     }
 
-    public void setStatus() {
-        if (status == Status.NEW) {
-            status = Status.IN_PROGRESS;
-        } else if (status == Status.IN_PROGRESS) {
-            status = Status.DONE;
-        }
+    public void setStatus(Status status) {
+        this.status = status;
     }
-
 
     @Override
     public boolean equals(Object o) {

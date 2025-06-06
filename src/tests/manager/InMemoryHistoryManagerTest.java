@@ -3,21 +3,23 @@ package manager;
 import task.Task;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryHistoryManagerTest {
     @Test
-    void historyShouldPreserveTaskState() {
-        HistoryManager history = Managers.getDefaultHistory();
-        Task task = new Task("Task", "Desc");
-        task.setId(1);
-        task.setStatus();
+    void historyRetainsCorrectVersionOfTask() {
+        InMemoryHistoryManager historyManager = new InMemoryHistoryManager();
 
-        history.add(task);
-        task.setStatus(); // Меняем состояние после добавления
-        task.setStatus();
-        task.setStatus();
-        Task fromHistory = history.getHistory().get(0);
-        assertEquals(task.getStatus(), fromHistory.getStatus());
+        Task task = new Task("Task", "desc");
+        task.setId(1);
+        historyManager.add(task);
+
+        task.setName("Modified");
+
+        List<Task> history = historyManager.getHistory();
+        assertEquals(1, history.size());
+        assertEquals("Modified", history.get(0).getName(), "История должна сохранять актуальную ссылку на задачу");
     }
 }
