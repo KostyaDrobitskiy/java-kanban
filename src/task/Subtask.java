@@ -1,7 +1,5 @@
 package task;
 
-import java.util.Objects;
-
 public class Subtask extends Task {
     private final int epicId;  // эпик, в который входит данная подзадача
 
