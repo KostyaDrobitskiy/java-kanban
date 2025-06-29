@@ -7,12 +7,14 @@ public class Subtask extends Task {
         super(name, description);
         this.epicId = epicId;
     }
+
     public int getEpicId() {
         return epicId;
     }
+
     @Override
     public String toString() {
-        return  "Subtask{" +
+        return "Subtask{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +

@@ -13,6 +13,7 @@ class EpicTest {
         epic2.setId(100);
         assertEquals(epic1, epic2);
     }
+
     @Test
     void newEpicHasEmptySubtaskList() {
         Epic epic = new Epic("Epic", "Desc");
