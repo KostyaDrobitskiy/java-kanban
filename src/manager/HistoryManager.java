@@ -11,6 +11,4 @@ public interface HistoryManager {
 
     List<Task> getHistory();
 }
-//There isn’t anything to compare.
-//main and sprint_6-solution are identical.
-// не могу понять как исправить
+
