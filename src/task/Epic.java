@@ -1,5 +1,7 @@
 package task;
+
 import java.util.*;
+
 public class Epic extends Task {
     private final Map<Integer, Subtask> subtasks = new HashMap<>();
 
@@ -25,7 +27,7 @@ public class Epic extends Task {
         boolean allNew = false;
         boolean allInProgress = false;
         boolean allDone = false;
-        if (subtasks.isEmpty()){
+        if (subtasks.isEmpty()) {
             return;
         }
         for (Subtask subtask : subtasks.values()) {
@@ -63,7 +65,7 @@ public class Epic extends Task {
 
     private String subtasksIds() {
         String s = "{ ";
-        for(Subtask subtask : subtasks.values()) {
+        for (Subtask subtask : subtasks.values()) {
             s = s + subtask.getId() + " ";
         }
         s = s + "}";
@@ -72,7 +74,7 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return  "Epic{" +
+        return "Epic{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
