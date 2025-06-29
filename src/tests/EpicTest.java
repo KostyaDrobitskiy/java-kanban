@@ -1,6 +1,5 @@
-package task;
-
 import org.junit.jupiter.api.Test;
+import task.Epic;
 
 import static org.junit.jupiter.api.Assertions.*;
 
