@@ -46,6 +46,8 @@ public class Main {
 
         managers.getTask(task1.getId());
         managers.getTask(task2.getId());
+        managers.getTask(task2.getId());
+        managers.getTask(task2.getId());
         managers.getEpic(epic1.getId());
         managers.getEpic(epic2.getId());
         managers.getSubtask(subtask1.getId());
