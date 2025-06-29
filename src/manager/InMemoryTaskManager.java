@@ -1,8 +1,10 @@
 package manager;
+
 import task.Epic;
 import task.Status;
 import task.Subtask;
 import task.Task;
+
 import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
@@ -15,22 +17,27 @@ public class InMemoryTaskManager implements TaskManager {
     public InMemoryTaskManager(HistoryManager historyManager) {
         this.historyManager = historyManager;
     }
+
     private int addId() {
         return nextId++;
     }
+
     @Override
     public List<Task> getHistory() {
         return historyManager.getHistory();
     }
+
     //Task
     @Override
     public ArrayList<Task> listOfTask() {
         return new ArrayList<>(tasks.values());
     }
+
     @Override
     public void clearTask() {
         tasks.clear();
     }
+
     @Override
     public Task getTask(Integer id) {
         Task task = tasks.get(id);
@@ -39,6 +46,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return task;
     }
+
     @Override
     public void createTask(Task task) {
         if (tasks.containsKey(task.getId())) {
@@ -48,25 +56,30 @@ public class InMemoryTaskManager implements TaskManager {
         task.setId(id);
         tasks.put(id, task);
     }
+
     @Override
     public void updateTask(Task task) {
         if (tasks.containsKey(task.getId())) {
             tasks.put(task.getId(), task);
         }
     }
+
     @Override
     public Task deleteTask(Integer id) {
         return tasks.remove(id);
     }
+
     //Epic
     @Override
     public ArrayList<Epic> listOfEpic() {
         return new ArrayList<>(epics.values());
     }
+
     @Override
     public void clearEpic() {
         epics.clear();
     }
+
     @Override
     public Epic getEpic(Integer id) {
         Epic epic = epics.get(id);
@@ -75,6 +88,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return epic;
     }
+
     @Override
     public void createEpic(Epic epic) {
         if (epics.containsKey(epic.getId())) {
@@ -84,6 +98,7 @@ public class InMemoryTaskManager implements TaskManager {
         epic.setId(id);
         epics.put(id, epic);
     }
+
     @Override
     public void updateEpic(Epic epic) {
         if (epics.containsKey(epic.getId())) {
@@ -93,6 +108,7 @@ public class InMemoryTaskManager implements TaskManager {
             updateEpicStatus(existing);
         }
     }
+
     @Override
     public void deleteEpicById(Integer id) {
         Epic epic = epics.remove(id);
@@ -102,6 +118,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
     }
+
     // Список задач определенного эпика
     @Override
     public List<Subtask> getSubtaskByEpic(int epicId) {
@@ -115,15 +132,18 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return result;
     }
+
     //Subtask
     @Override
     public ArrayList<Subtask> listOfSubtask() {
         return new ArrayList<>(subtasks.values());
     }
+
     @Override
     public void clearSubtask() {
         subtasks.clear();
     }
+
     @Override
     public Subtask getSubtask(Integer id) {
         Subtask subtask = subtasks.get(id);
@@ -132,6 +152,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return subtask;
     }
+
     @Override
     public void createSubtask(Subtask subtask) {
         if (!epics.containsKey(subtask.getEpicId())) {
@@ -146,6 +167,7 @@ public class InMemoryTaskManager implements TaskManager {
             updateEpicStatus(epic);
         }
     }
+
     @Override
     public void updateSubtask(Subtask subtask) {
         if (subtasks.containsKey(subtask.getId())) {
@@ -156,6 +178,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
     }
+
     @Override
     public void deleteSubtaskById(Integer id) {
         Subtask subtask = subtasks.remove(id);
@@ -167,6 +190,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
     }
+
     @Override
     public void updateEpicStatus(Epic epic) {
         if (epic == null) return;

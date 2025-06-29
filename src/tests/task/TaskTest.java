@@ -3,6 +3,7 @@ package task;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class TaskTest {
     @Test
     void testTaskEqualityById() {
@@ -12,6 +13,7 @@ class TaskTest {
         task2.setId(100);
         assertEquals(task1, task2);
     }
+
     @Test
     void subtaskAndEpicAreEqualIfIdEqual() {
         Subtask subtask = new Subtask("Subtask", "desc", 1);

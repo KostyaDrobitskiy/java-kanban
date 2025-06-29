@@ -1,5 +1,7 @@
 package task;
+
 import java.util.*;
+
 public class Epic extends Task {
     private final List<Integer> subtasks = new ArrayList<>();
 
@@ -14,12 +16,14 @@ public class Epic extends Task {
     public void addSubtask(int id) {
         subtasks.add(id);
     }
+
     public void removeSubtaskId(int id) {
         subtasks.remove((Integer) id);
     }
+
     @Override
     public String toString() {
-        return  "Epic{" +
+        return "Epic{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +

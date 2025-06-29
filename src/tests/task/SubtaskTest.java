@@ -1,6 +1,9 @@
 package task;
+
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 class SubtaskTest {
     @Test
     void subtasksWithSameIdShouldBeEqual() {
@@ -10,6 +13,7 @@ class SubtaskTest {
         sub2.setId(100);
         assertEquals(sub1, sub2);
     }
+
     @Test
     void testSubtaskCannotBeItsOwnEpic() {
         Subtask subtask = new Subtask("Sub", "desc", 10);
